@@ -2,5 +2,5 @@
 よせあつめの卒研用リポジトリ
 # 命名規約
 1. 一目見て何を行うorどんな画面なのかわかる名前にすること<br>
-　* 例）Home_user.php, Home_admin.php
+  例）Home_user.php, Home_admin.php
 2. ほかにあれば追記していきます！
