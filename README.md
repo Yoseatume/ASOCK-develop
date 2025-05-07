@@ -7,6 +7,7 @@
 | PHPクラス名ファイル  | `CamelCase.php`  | PSR準拠                    |
 | Arduinoファイル名 | `snake_case.ino` | `.ino`はプロジェクト名と一致        |
 | ディレクトリ名      | `snake_case`     | `php/`, `arduino/` などで分離 |
+
 **CamelCase**は、ファイル名の中の単語の頭文字を大文字にする書き方。アンダーバーは使用しないよ！<br>
 例）UserHome.php<br>
 **snake_case**は、ファイル名の中の単語をアンダーバーでつなぐ書き方。大文字は使用しないよ！<br>
