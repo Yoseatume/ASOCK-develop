@@ -1,0 +1,58 @@
+.floorNumArea {
+  /*アンダーライン*/
+  border-bottom: solid 2px rgba(0, 0, 0, 1);
+
+  /* 下とのスペース */
+  margin-bottom: 16px;
+}
+.floorNum {
+  font-size: 75px;
+  /*横幅*/
+  margin-left: 32px;
+}
+.classRoomSafe {
+  font-size: 60px;
+  background-color: #beffac;
+
+  /* 縦幅 */
+  width: 45%;
+
+  /* 横幅 */
+  margin-bottom: 16px;
+  margin-left: 16px;
+  margin-right: 16px;
+
+  /* ボタンのサイズ */
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  /* ボタンの角 */
+  border-radius: 50px;
+  border-width: 1px;
+  border-style: solid;
+}
+.classRoomDanger {
+  font-size: 60px;
+  background-color: #ffa8a8;
+
+  /* 縦幅 */
+  width: 45%;
+
+  /* 横幅 */
+  margin-bottom: 16px;
+  margin-left: 16px;
+  margin-right: 16px;
+
+  /* ボタンのサイズ */
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 100px;
+  padding-bottom: 100px;
+
+  /* ボタンの角 */
+  border-radius: 50px;
+  border-width: 1px;
+  border-style: solid;
+}
