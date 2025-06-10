@@ -4,41 +4,53 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>モーダル</title>
+  <!-- 外部cssファイルの読み込み -->
   <link rel="stylesheet" href="css/AddClassroom.css" />
 </head>
 <body>
 
+<!-- モーダルを開くためのボタン -->
 <button id="openModalBtn">モーダルを開く</button>
 
+<!-- モーダル本体 -->
 <div id="modal" class="modal">
   <div class="modal-content">
+    <!-- モーダルを閉じるボタン -->
     <span id="closeModalBtn" class="close">&times;</span>
+    <!-- PHPファイルから取得したHTMLを挿入する場所 -->
     <div id="modalBody"></div>
   </div>
 </div>
 
+<!-- JavaScriptによるモーダルの制御 -->
 <script>
+  //モーダル本体の要素を取得
   const modal = document.getElementById('modal');
+  //モーダルを開くボタンの要素を取得
   const openBtn = document.getElementById('openModalBtn');
+  //モーダルを閉じるボタンの要素を取得
   const closeBtn = document.getElementById('closeModalBtn');
+  //モーダル内に内容を挿入する領域を取得
   const modalBody = document.getElementById('modalBody');
-
+  
+  //モーダルを開くボタンがクリックされた時
   openBtn.onclick = () => {
+    //PHP空データを取得してモーダルに挿入
     fetch('php/AddClassroom.php')
-      .then(res => res.text())
+      .then(res => res.text()) //レスポンスをテキストとして受け取る
       .then(data => {
-        modalBody.innerHTML = data;
-        modal.style.display = 'block';
+        modalBody.innerHTML = data; //モーダル内に取得データを挿入
+        modal.style.display = 'block'; //モーダルを表示
       });
   };
-
+  //モーダルを閉じるボタンがクリックされた時
   closeBtn.onclick = () => {
-    modal.style.display = 'none';
+    modal.style.display = 'none'; //モーダルを非表示
   };
-
+  //モーダル外の画面がクリックされた時
   window.onclick = (e) => {
     if (e.target === modal) {
-      modal.style.display = 'none';
+      modal.style.display = 'none'; //モーダルを非表示
     }
   };
 </script>
