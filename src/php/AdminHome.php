@@ -14,7 +14,7 @@ for ($i = 0; $i < 7 ;$i++) {
     <span name="floorNum" class="floorNum"><?php echo $i + 1; ?>階</span>
 </div>
 
-<div class="classRoomNumArea">
+<div class="classRoomNumArea1">
     <div class="classRoomNumArea2">
     <?php
     //教室数表示のためのループ
@@ -24,14 +24,22 @@ for ($i = 0; $i < 7 ;$i++) {
         if($j % 2 == 0){
     ?>
     <div class="classRoomSafe">
-        <div class="classRoomName">
+        <div class="adminClassRoom">
             <?php echo $classRoomNum; ?>教室
+        </div>
+        <div class="udButton">
+            <button class="classUpdate">編集</button>
+            <button class="classDelete">削除</button>
         </div>
     </div>
     <?php }else{ ?>
     <div class="classRoomDanger">
-        <div class="classRoomName">
+        <div class="adminClassRoom">
             <?php echo $classRoomNum; ?>教室
+        </div>
+        <div class="udButton">
+            <button class="classUpdate">編集</button>
+            <button class="classDelete">削除</button>
         </div>
     </div>
     <?php 
