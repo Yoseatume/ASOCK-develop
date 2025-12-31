@@ -7,11 +7,10 @@
 <div class="area">
 <?php
 //階数表示のためのループ
-for ($i = 0; $i < 7 ;$i++) {
+for ($i = 0; $i < 9 ;$i++) {
 ?>
 
-<div class="floorNumArea">
-    <span name="floorNum" class="floorNum"><?php echo $i + 1; ?>階</span>
+<div id="floorNumArea" class="floorNumArea">
 </div>
 
 <div class="classRoomNumArea">
@@ -20,30 +19,11 @@ for ($i = 0; $i < 7 ;$i++) {
     //教室数表示のためのループ
     for ($j = 0; $j < 9; $j++) {
         $classRoomNum = 100 + ($i + 1) * 10 + $j + 1;
-        //↓ここで鍵が開いているかを判定する予定
-        if($j % 2 == 0){
     ?>
 
-    <div id="room-<?php echo $classRoomNum;?>"class="classRoomSafe">
-        <div class="classRoomName">
-            <?php echo $classRoomNum; ?>教室
-        </div>
-    </div>
-    <?php }else{ ?>
-    <div class="classRoomDanger">
-        <div class="classRoomName">
-            <?php echo $classRoomNum; ?>教室
-        </div>
-        <!-- ★テスト用の教室 -->
-        <div id="room-test" class="classRoomSafe">
-           <div class="classRoomName">
-             test教室
-           </div>
-        </div>
-
+    <div id="room-<?php echo $classRoomNum;?>"class="">
     </div>
     <?php 
-    }
     if($j % 2 == 1){
     ?>
     </div><div class="classRoomNumArea2">
@@ -60,26 +40,42 @@ for ($i = 0; $i < 7 ;$i++) {
 </div>
 <script>
     //GASのWebアプリURL
-    const GAS_URL = "https://discordapp.com/channels/@me/1151361053159071755/1426017822592729111";
+    const GAS_URL = 'https://script.google.com/macros/s/AKfycbz0Oh8RQT_N6sl2Fx_-THKNYCf-n3jbc9h_wmLaJfQSYXotE0_Z8t1o1NljW6btak2Paw/exec?sheet=ClassInfo';
 
     //スプレッドシートからデータを取得
     async function loadData(){
         try{
-            const response = await fetch(GAS_URL);
-            const data = await response.json();
+            const roomNum = await fetch(GAS_URL);
+            const data = await roomNum.json();
+            console.log(data);
+            data.sort(function(a,b){
+                if(a.ClassName < b.ClassName) return -1;
+                if(a.ClassName > b.ClassName) return 1;
+            });
+            console.log(data);
 
-            //dataは例えば[{ KeyID: "A1", ClassRoom: "101", Locked: "true" }, ...] の形式
-            data.forEach(item =>{
-                const btn = document.getElementById(`room-${item.ClassRoom}`);
+            var floor = 0;
+            data.forEach(function(value){
+                const btn = document.getElementById(`room-${value.ClassName}`);
+                let classbox = value.ClassName;
+                const floorbox = Math.floor((classbox - 100) / 10);
+                const floordata = document.getElementById(`floorNumArea`);
+                console.log(floorbox);
                 if(!btn)return;
-                
-                if(item.Locked === "true" ){
-                    btn.classList.add("classRoomSafe");
-                    btn.classList.remove("classRoomDanger");
-                }else{
-                    btn.classList.add("classRoomDanger");
-                    btn.classList.remove("classRoomSafe");
+                if(floor != floorbox){
+                    floor = floorbox;
+                    console.log(floordata);
+                    floordata.innerHTML = '<span name="floorNum-'+floor+'" class="floorNum">'+floor+'階</span>';
                 }
+                if(value.status === "true" ){
+                    btn.classList.remove();
+                    btn.classList.add("classRoomSafe");
+                }else{
+                    btn.classList.remove();
+                    btn.classList.add("classRoomDanger");
+                }
+                btn.innerHTML = '<div class="classRoomName">'+value.ClassName+'教室</div>';
+                console.log(btn);
             });
         }catch (e){
             console.error("データの取得に失敗しました:",e);
